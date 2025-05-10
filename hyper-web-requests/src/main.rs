@@ -8,7 +8,7 @@ use tokio::net::TcpStream;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     // Parse our URL...
-    let url = "http://duckduckgo.com".parse::<hyper::Uri>()?;
+    let url = "https://duckduckgo.com".parse::<hyper::Uri>()?;
 
     // Get the host and the port
     let host = url.host().ok_or("Missing host")?;
