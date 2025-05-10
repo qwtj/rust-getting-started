@@ -8,12 +8,11 @@ use tokio::net::TcpStream;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     // Parse our URL...
-    let url = "http://httpbin.org/ip".parse::<hyper::Uri>()?;
+    let url = "http://duckduckgo.com".parse::<hyper::Uri>()?;
 
     // Get the host and the port
-    let host = url.host().expect("uri has no host");
+    let host = url.host().ok_or("Missing host")?;
     let port = url.port_u16().unwrap_or(80);
-
     let address = format!("{}:{}", host, port);
 
     // Open a TCP connection to the remote host
